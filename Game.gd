@@ -1,12 +1,5 @@
 extends Node
 
-var whiteDie1Num
-var whiteDie2Num
-var redDieNum
-var yellowDieNum
-var greenDieNum
-var blueDieNum
-
 onready var whiteDie1 = get_node("Control/whiteDie1")
 onready var whiteDie2 = get_node("Control/whiteDie2")
 onready var redDie = get_node("Control/redDie")
@@ -17,6 +10,13 @@ onready var blueDie = get_node("Control/blueDie")
 onready var rollButton = get_node("Control/rollButton")
 
 var rng = RandomNumberGenerator.new()
+
+var whiteDie1Num
+var whiteDie2Num
+var redDieNum
+var yellowDieNum
+var greenDieNum
+var blueDieNum
 
 func _ready():
 	pass
@@ -37,6 +37,45 @@ func rollAll():
 	roll(yellowDieNum, yellowDie, "yellow")
 	roll(greenDieNum, greenDie, "green")
 	roll(blueDieNum, blueDie, "blue")
+	
+	var possibleWhite = whiteDie1Num + whiteDie2Num
+	var possibleRed1 = redDieNum + whiteDie1Num
+	var possibleRed2 = redDieNum + whiteDie2Num
+	var possibleYellow1 = yellowDieNum + whiteDie1Num
+	var possibleYellow2 = yellowDieNum + whiteDie2Num
+	var possibleGreen1 = greenDieNum + whiteDie1Num
+	var possibleGreen2 = greenDieNum + whiteDie2Num
+	var possibleBlue1 = blueDieNum + whiteDie1Num
+	var possibleBlue2 = blueDieNum + whiteDie2Num
+	
+	print("White: ", possibleWhite)
+	print("Red: ", possibleRed1)
+	print("Red: ", possibleRed2)
+	print("Yellow: ", possibleYellow1)
+	print("Yellow: ", possibleYellow2)
+	print("Green: ", possibleGreen1)
+	print("Green: ", possibleGreen2)
+	print("Blue: ", possibleBlue1)
+	print("Blue: ", possibleBlue2)
+	
+	var redArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	var yellowArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	var greenArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	var blueArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	
+	redArray[possibleRed1] = 1
+	redArray[possibleRed2] = 1
+	yellowArray[possibleYellow1] = 1
+	yellowArray[possibleYellow2] = 1
+	greenArray[possibleGreen1] = 1
+	greenArray[possibleGreen2] = 1
+	blueArray[possibleBlue1] = 1
+	blueArray[possibleBlue2] = 1
+	
+	print(redArray)
+	print(yellowArray)
+	print(greenArray)
+	print(blueArray)
 
 func roll(dieNum, diceTexture, color):
 	var s
