@@ -18,10 +18,20 @@ var yellowDieNum
 var greenDieNum
 var blueDieNum
 
+var redArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+var yellowArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+var greenArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+var blueArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
 func _ready():
 	pass
 	
 func rollAll():
+	redArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	yellowArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	greenArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	blueArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	
 	rng.randomize()
 	
 	whiteDie1Num = rng.randi_range(1, 6)
@@ -58,11 +68,6 @@ func rollAll():
 	print("Blue: ", possibleBlue1)
 	print("Blue: ", possibleBlue2)
 	
-	var redArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-	var yellowArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-	var greenArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-	var blueArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-	
 	redArray[possibleRed1] = 1
 	redArray[possibleRed2] = 1
 	yellowArray[possibleYellow1] = 1
@@ -71,6 +76,8 @@ func rollAll():
 	greenArray[possibleGreen2] = 1
 	blueArray[possibleBlue1] = 1
 	blueArray[possibleBlue2] = 1
+	
+	checkScoreSheet()
 	
 	print(redArray)
 	print(yellowArray)
@@ -95,3 +102,33 @@ func roll(dieNum, diceTexture, color):
 
 func _on_rollButton_button_up():
 	rollAll()
+	
+func checkScoreSheet():
+	for i in range(2, 13):
+		var red = "Control/RedScores/Red" + str(i)
+		var yellow = "Control/YellowScores/Yellow" + str(i)
+		var green = "Control/GreenScores/Green" + str(i)
+		var blue = "Control/BlueScores/Blue" + str(i)
+		var redNode = get_node(red)
+		var yellowNode = get_node(yellow)
+		var greenNode = get_node(green)
+		var blueNode = get_node(blue)
+		if(redArray[i] == 1):
+			redNode.disabled = false
+		else:
+			redNode.disabled = true
+			
+		if(yellowArray[i] == 1):
+			yellowNode.disabled = false
+		else:
+			yellowNode.disabled = true
+			
+		if(greenArray[i] == 1):
+			greenNode.disabled = false
+		else:
+			greenNode.disabled = true
+			
+		if(blueArray[i] == 1):
+			blueNode.disabled = false
+		else:
+			blueNode.disabled = true
