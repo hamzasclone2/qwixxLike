@@ -44,8 +44,16 @@ texture = ExtResource( 2 )
 offset = Vector2( 300, 25 )
 
 [node name="RedScores" type="Control" parent="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Control/RedScores"]
+margin_left = 54.0
+margin_top = 174.0
+margin_right = 717.0
+margin_bottom = 236.0
+color = Color( 1, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -172,10 +180,18 @@ __meta__ = {
 }
 
 [node name="YellowScores" type="Control" parent="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 60.0
-margin_bottom = 60.0
+margin_top = 59.9323
+margin_bottom = 59.9323
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Control/YellowScores"]
+margin_left = 54.0
+margin_top = 174.0
+margin_right = 717.0
+margin_bottom = 236.0
+color = Color( 0.921569, 1, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -302,65 +318,73 @@ __meta__ = {
 }
 
 [node name="GreenScores" type="Control" parent="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 120.0
-margin_bottom = 120.0
+margin_top = 118.366
+margin_bottom = 118.366
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Green2" type="Button" parent="Control/GreenScores"]
+[node name="ColorRect" type="ColorRect" parent="Control/GreenScores"]
+margin_left = 54.0
+margin_top = 177.0
+margin_right = 717.0
+margin_bottom = 236.0
+color = Color( 0, 1, 0.0392157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Green12" type="Button" parent="Control/GreenScores"]
 margin_left = 60.0
 margin_top = 180.0
 margin_right = 110.0
 margin_bottom = 230.0
 disabled = true
-text = "2"
+text = "12"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Green3" type="Button" parent="Control/GreenScores"]
+[node name="Green11" type="Button" parent="Control/GreenScores"]
 margin_left = 120.0
 margin_top = 180.0
 margin_right = 170.0
 margin_bottom = 230.0
 disabled = true
-text = "3"
+text = "11"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Green4" type="Button" parent="Control/GreenScores"]
+[node name="Green10" type="Button" parent="Control/GreenScores"]
 margin_left = 180.0
 margin_top = 180.0
 margin_right = 230.0
 margin_bottom = 230.0
 disabled = true
-text = "4"
+text = "10"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Green5" type="Button" parent="Control/GreenScores"]
+[node name="Green9" type="Button" parent="Control/GreenScores"]
 margin_left = 240.0
 margin_top = 180.0
 margin_right = 290.0
 margin_bottom = 230.0
 disabled = true
-text = "5"
+text = "9"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Green6" type="Button" parent="Control/GreenScores"]
+[node name="Green8" type="Button" parent="Control/GreenScores"]
 margin_left = 300.0
 margin_top = 180.0
 margin_right = 350.0
 margin_bottom = 230.0
 disabled = true
-text = "6"
+text = "8"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -376,107 +400,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Green8" type="Button" parent="Control/GreenScores"]
+[node name="Green6" type="Button" parent="Control/GreenScores"]
 margin_left = 420.0
 margin_top = 180.0
 margin_right = 470.0
 margin_bottom = 230.0
 disabled = true
-text = "8"
+text = "6"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Green9" type="Button" parent="Control/GreenScores"]
+[node name="Green5" type="Button" parent="Control/GreenScores"]
 margin_left = 480.0
 margin_top = 180.0
 margin_right = 530.0
-margin_bottom = 230.0
-disabled = true
-text = "9"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Green10" type="Button" parent="Control/GreenScores"]
-margin_left = 540.0
-margin_top = 180.0
-margin_right = 590.0
-margin_bottom = 230.0
-disabled = true
-text = "10"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Green11" type="Button" parent="Control/GreenScores"]
-margin_left = 600.0
-margin_top = 180.0
-margin_right = 650.0
-margin_bottom = 230.0
-disabled = true
-text = "11"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Green12" type="Button" parent="Control/GreenScores"]
-margin_left = 660.0
-margin_top = 180.0
-margin_right = 710.0
-margin_bottom = 230.0
-disabled = true
-text = "12"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="BlueScores" type="Control" parent="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 180.0
-margin_bottom = 180.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Blue2" type="Button" parent="Control/BlueScores"]
-margin_left = 60.0
-margin_top = 180.0
-margin_right = 110.0
-margin_bottom = 230.0
-disabled = true
-text = "2"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Blue3" type="Button" parent="Control/BlueScores"]
-margin_left = 120.0
-margin_top = 180.0
-margin_right = 170.0
-margin_bottom = 230.0
-disabled = true
-text = "3"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Blue4" type="Button" parent="Control/BlueScores"]
-margin_left = 180.0
-margin_top = 180.0
-margin_right = 230.0
-margin_bottom = 230.0
-disabled = true
-text = "4"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Blue5" type="Button" parent="Control/BlueScores"]
-margin_left = 240.0
-margin_top = 180.0
-margin_right = 290.0
 margin_bottom = 230.0
 disabled = true
 text = "5"
@@ -484,13 +422,107 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Blue6" type="Button" parent="Control/BlueScores"]
+[node name="Green4" type="Button" parent="Control/GreenScores"]
+margin_left = 540.0
+margin_top = 180.0
+margin_right = 590.0
+margin_bottom = 230.0
+disabled = true
+text = "4"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Green3" type="Button" parent="Control/GreenScores"]
+margin_left = 600.0
+margin_top = 180.0
+margin_right = 650.0
+margin_bottom = 230.0
+disabled = true
+text = "3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Green2" type="Button" parent="Control/GreenScores"]
+margin_left = 660.0
+margin_top = 180.0
+margin_right = 710.0
+margin_bottom = 230.0
+disabled = true
+text = "2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlueScores" type="Control" parent="Control"]
+margin_top = 179.797
+margin_bottom = 179.797
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Control/BlueScores"]
+margin_left = 54.0
+margin_top = 174.0
+margin_right = 717.0
+margin_bottom = 236.0
+color = Color( 0, 0.0156863, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Blue12" type="Button" parent="Control/BlueScores"]
+margin_left = 60.0
+margin_top = 180.0
+margin_right = 110.0
+margin_bottom = 230.0
+disabled = true
+text = "12"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Blue11" type="Button" parent="Control/BlueScores"]
+margin_left = 120.0
+margin_top = 180.0
+margin_right = 170.0
+margin_bottom = 230.0
+disabled = true
+text = "11"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Blue10" type="Button" parent="Control/BlueScores"]
+margin_left = 180.0
+margin_top = 180.0
+margin_right = 230.0
+margin_bottom = 230.0
+disabled = true
+text = "10"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Blue9" type="Button" parent="Control/BlueScores"]
+margin_left = 240.0
+margin_top = 180.0
+margin_right = 290.0
+margin_bottom = 230.0
+disabled = true
+text = "9"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Blue8" type="Button" parent="Control/BlueScores"]
 margin_left = 300.0
 margin_top = 180.0
 margin_right = 350.0
 margin_bottom = 230.0
 disabled = true
-text = "6"
+text = "8"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -506,57 +538,57 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Blue8" type="Button" parent="Control/BlueScores"]
+[node name="Blue6" type="Button" parent="Control/BlueScores"]
 margin_left = 420.0
 margin_top = 180.0
 margin_right = 470.0
 margin_bottom = 230.0
 disabled = true
-text = "8"
+text = "6"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Blue9" type="Button" parent="Control/BlueScores"]
+[node name="Blue5" type="Button" parent="Control/BlueScores"]
 margin_left = 480.0
 margin_top = 180.0
 margin_right = 530.0
 margin_bottom = 230.0
 disabled = true
-text = "9"
+text = "5"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Blue10" type="Button" parent="Control/BlueScores"]
+[node name="Blue4" type="Button" parent="Control/BlueScores"]
 margin_left = 540.0
 margin_top = 180.0
 margin_right = 590.0
 margin_bottom = 230.0
 disabled = true
-text = "10"
+text = "4"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Blue11" type="Button" parent="Control/BlueScores"]
+[node name="Blue3" type="Button" parent="Control/BlueScores"]
 margin_left = 600.0
 margin_top = 180.0
 margin_right = 650.0
 margin_bottom = 230.0
 disabled = true
-text = "11"
+text = "3"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Blue12" type="Button" parent="Control/BlueScores"]
+[node name="Blue2" type="Button" parent="Control/BlueScores"]
 margin_left = 660.0
 margin_top = 180.0
 margin_right = 710.0
 margin_bottom = 230.0
 disabled = true
-text = "12"
+text = "2"
 __meta__ = {
 "_edit_use_anchors_": false
 }
