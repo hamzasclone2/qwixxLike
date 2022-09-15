@@ -1,13 +1,13 @@
 extends Node
 
-onready var whiteDie1 = get_node("Control/whiteDie1")
-onready var whiteDie2 = get_node("Control/whiteDie2")
-onready var redDie = get_node("Control/redDie")
-onready var yellowDie = get_node("Control/yellowDie")
-onready var greenDie = get_node("Control/greenDie")
-onready var blueDie = get_node("Control/blueDie")
+onready var whiteDie1 = get_node("Dice/whiteDie1")
+onready var whiteDie2 = get_node("Dice/whiteDie2")
+onready var redDie = get_node("Dice/redDie")
+onready var yellowDie = get_node("Dice/yellowDie")
+onready var greenDie = get_node("Dice/greenDie")
+onready var blueDie = get_node("Dice/blueDie")
 
-onready var rollButton = get_node("Control/rollButton")
+onready var rollButton = get_node("rollButton")
 
 var rng = RandomNumberGenerator.new()
 
@@ -18,20 +18,72 @@ var yellowDieNum
 var greenDieNum
 var blueDieNum
 
-var redArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-var yellowArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-var greenArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-var blueArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+var scoreButton = preload("res://ScoreButton.tscn")
+
+onready var scoreSheet = get_node("ScoreSheet")
+
+var scoreSheetValues = [
+	['R','R','R','R','R','R','R','R','R','R','R'],
+	['Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y'],
+	['G','G','G','G','G','G','G','G','G','G','G'],
+	['B','B','B','B','B','B','B','B','B','B','B']
+]
 
 func _ready():
-	pass
+	var firstRow = scoreSheetValues[0]
+	var xpos = 237
+	var ypos = 0
+	for i in range(2, 13):
+		var s = scoreButton.instance()
+		s.rect_position.x = xpos
+		s.rect_position.y = ypos
+		scoreSheet.add_child(s)
+		var color = firstRow.pop_front()
+		s.name = color + str(i)
+		s.setup(color, i)
+		xpos += 50
+		
+	var secondRow = scoreSheetValues[1]
+	xpos = 237
+	ypos = 50
+	for i in range(2, 13):
+		var s = scoreButton.instance()
+		s.rect_position.x = xpos
+		s.rect_position.y = ypos
+		scoreSheet.add_child(s)
+		var color = secondRow.pop_front()
+		s.name = color + str(i)
+		s.setup(color, i)
+		xpos += 50
+		
+	var thirdRow = scoreSheetValues[2]
+	xpos = 237
+	ypos = 100
+	for i in range(12, 1, -1):
+		var s = scoreButton.instance()
+		s.rect_position.x = xpos
+		s.rect_position.y = ypos
+		scoreSheet.add_child(s)
+		var color = thirdRow.pop_front()
+		s.name = color + str(i)
+		s.setup(color, i)
+		xpos += 50
+		
+	var fourthRow = scoreSheetValues[3]
+	xpos = 237
+	ypos = 150
+	for i in range(12, 1, -1):
+		var s = scoreButton.instance()
+		s.rect_position.x = xpos
+		s.rect_position.y = ypos
+		scoreSheet.add_child(s)
+		var color = fourthRow.pop_front()
+		s.name = color + str(i)
+		s.setup(color, i)
+		xpos += 50
+	
 	
 func rollAll():
-	redArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-	yellowArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-	greenArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-	blueArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-	
 	rng.randomize()
 	
 	whiteDie1Num = rng.randi_range(1, 6)
@@ -67,22 +119,7 @@ func rollAll():
 	print("Green: ", possibleGreen2)
 	print("Blue: ", possibleBlue1)
 	print("Blue: ", possibleBlue2)
-	
-	redArray[possibleRed1] = 1
-	redArray[possibleRed2] = 1
-	yellowArray[possibleYellow1] = 1
-	yellowArray[possibleYellow2] = 1
-	greenArray[possibleGreen1] = 1
-	greenArray[possibleGreen2] = 1
-	blueArray[possibleBlue1] = 1
-	blueArray[possibleBlue2] = 1
-	
-	checkScoreSheet()
-	
-	print(redArray)
-	print(yellowArray)
-	print(greenArray)
-	print(blueArray)
+
 
 func roll(dieNum, diceTexture, color):
 	var s
@@ -102,33 +139,3 @@ func roll(dieNum, diceTexture, color):
 
 func _on_rollButton_button_up():
 	rollAll()
-	
-func checkScoreSheet():
-	for i in range(2, 13):
-		var red = "Control/RedScores/Red" + str(i)
-		var yellow = "Control/YellowScores/Yellow" + str(i)
-		var green = "Control/GreenScores/Green" + str(i)
-		var blue = "Control/BlueScores/Blue" + str(i)
-		var redNode = get_node(red)
-		var yellowNode = get_node(yellow)
-		var greenNode = get_node(green)
-		var blueNode = get_node(blue)
-		if(redArray[i] == 1):
-			redNode.disabled = false
-		else:
-			redNode.disabled = true
-			
-		if(yellowArray[i] == 1):
-			yellowNode.disabled = false
-		else:
-			yellowNode.disabled = true
-			
-		if(greenArray[i] == 1):
-			greenNode.disabled = false
-		else:
-			greenNode.disabled = true
-			
-		if(blueArray[i] == 1):
-			blueNode.disabled = false
-		else:
-			blueNode.disabled = true
