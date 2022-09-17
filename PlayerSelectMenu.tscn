@@ -112,6 +112,9 @@ margin_bottom = 120.0
 text = "AI"
 items = [ "AI", null, false, 0, null, "Human", null, false, 1, null ]
 selected = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="OptionButton2" type="OptionButton" parent="Control"]
 margin_left = 350.0

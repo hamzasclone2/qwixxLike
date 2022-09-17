@@ -1,17 +1,11 @@
 extends Node
 
-var player2Type
-var player3Type
-var player4Type
-var player5Type
+var playerTypes = ["Human", "AI", "None", "None", "None"]
+
+var currentRollingPlayer = 0
+var currentScoringPlayer = 0
 
 var playerScoreSheets = []
-
-func printTypes():
-	print(player2Type)
-	print(player3Type)
-	print(player4Type)
-	print(player5Type)
 	
 func setup():
 	var startingScoresheet = [
@@ -23,15 +17,15 @@ func setup():
 	
 	playerScoreSheets.append(startingScoresheet) # Player 1
 	playerScoreSheets.append(startingScoresheet) # Player 2
-	if(player3Type != "None"):
+	if(playerTypes[2] != "None"): # Player 3
 		playerScoreSheets.append(startingScoresheet)
 	else:
 		playerScoreSheets.append([])
-	if(player4Type != "None"):
+	if(playerTypes[3] != "None"): # Player 4
 		playerScoreSheets.append(startingScoresheet)
 	else:
 		playerScoreSheets.append([])
-	if(player5Type != "None"):
+	if(playerTypes[4] != "None"): # Player 5
 		playerScoreSheets.append(startingScoresheet)
 	else:
 		playerScoreSheets.append([])

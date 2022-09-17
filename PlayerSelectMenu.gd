@@ -6,10 +6,10 @@ onready var player4 = get_node("Control/OptionButton3")
 onready var player5 = get_node("Control/OptionButton4")
 
 func _on_Button_pressed():
-	Players.player2Type = player2.get_item_text(player2.get_selected_id())
-	Players.player3Type = player3.get_item_text(player3.get_selected_id())
-	Players.player4Type = player4.get_item_text(player4.get_selected_id())
-	Players.player5Type = player5.get_item_text(player5.get_selected_id())
+	Players.playerTypes[1] = player2.get_item_text(player2.get_selected_id())
+	Players.playerTypes[2] = player3.get_item_text(player3.get_selected_id())
+	Players.playerTypes[3] = player4.get_item_text(player4.get_selected_id())
+	Players.playerTypes[4] = player5.get_item_text(player5.get_selected_id())
 	
 	Players.setup()
 	

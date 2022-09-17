@@ -19,3 +19,16 @@ func setup(new_color, new_value):
 	button.text = str(new_value)
 	value = new_value
 	color = new_color
+
+
+func _on_Button_pressed():
+	if(Players.currentRollingPlayer == 1):
+		get_node("Label").visible = true
+	elif(Players.currentRollingPlayer == 2):
+		get_node("Label2").visible = true
+	elif(Players.currentRollingPlayer == 3):
+		get_node("Label3").visible = true
+	elif(Players.currentRollingPlayer == 4):
+		get_node("Label4").visible = true
+	elif(Players.currentRollingPlayer == 5):
+		get_node("Label5").visible = true

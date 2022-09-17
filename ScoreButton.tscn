@@ -3,16 +3,16 @@
 [ext_resource path="res://ScoreButton.gd" type="Script" id=1]
 
 [node name="Control" type="Control"]
-margin_right = 50.0
-margin_bottom = 50.0
+margin_right = 60.0
+margin_bottom = 60.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 50.0
-margin_bottom = 50.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -20,9 +20,66 @@ __meta__ = {
 [node name="Button" type="Button" parent="."]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 45.0
-margin_bottom = 45.0
+margin_right = 55.0
+margin_bottom = 55.0
 text = "?"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Label" type="Label" parent="."]
+visible = false
+margin_left = 7.07107
+margin_top = 6.36397
+margin_right = 15.0711
+margin_bottom = 20.364
+text = "1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+margin_left = 25.8094
+margin_top = 4.94977
+margin_right = 33.8094
+margin_bottom = 18.9498
+text = "2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="."]
+visible = false
+margin_left = 47.0226
+margin_top = 4.59618
+margin_right = 55.0226
+margin_bottom = 18.5962
+text = "3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="."]
+visible = false
+margin_left = 14.4957
+margin_top = 40.6586
+margin_right = 22.4957
+margin_bottom = 54.6586
+text = "4"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="."]
+visible = false
+margin_left = 36.416
+margin_top = 41.0122
+margin_right = 44.416
+margin_bottom = 55.0122
+text = "5"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

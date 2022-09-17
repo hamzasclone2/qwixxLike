@@ -22,7 +22,7 @@ var scoreButton = preload("res://ScoreButton.tscn")
 
 onready var scoreSheet = get_node("ScoreSheet")
 
-var scoreSheetValues = [
+var scoreSheetColors = [
 	['R','R','R','R','R','R','R','R','R','R','R'],
 	['Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y'],
 	['G','G','G','G','G','G','G','G','G','G','G'],
@@ -30,8 +30,8 @@ var scoreSheetValues = [
 ]
 
 func _ready():
-	var firstRow = scoreSheetValues[0]
-	var xpos = 237
+	var firstRow = scoreSheetColors[0]
+	var xpos = 200
 	var ypos = 0
 	for i in range(2, 13):
 		var s = scoreButton.instance()
@@ -41,11 +41,11 @@ func _ready():
 		var color = firstRow.pop_front()
 		s.name = color + str(i)
 		s.setup(color, i)
-		xpos += 50
+		xpos += 60
 		
-	var secondRow = scoreSheetValues[1]
-	xpos = 237
-	ypos = 50
+	var secondRow = scoreSheetColors[1]
+	xpos = 200
+	ypos = 60
 	for i in range(2, 13):
 		var s = scoreButton.instance()
 		s.rect_position.x = xpos
@@ -54,11 +54,11 @@ func _ready():
 		var color = secondRow.pop_front()
 		s.name = color + str(i)
 		s.setup(color, i)
-		xpos += 50
+		xpos += 60
 		
-	var thirdRow = scoreSheetValues[2]
-	xpos = 237
-	ypos = 100
+	var thirdRow = scoreSheetColors[2]
+	xpos = 200
+	ypos = 120
 	for i in range(12, 1, -1):
 		var s = scoreButton.instance()
 		s.rect_position.x = xpos
@@ -67,11 +67,11 @@ func _ready():
 		var color = thirdRow.pop_front()
 		s.name = color + str(i)
 		s.setup(color, i)
-		xpos += 50
+		xpos += 60
 		
-	var fourthRow = scoreSheetValues[3]
-	xpos = 237
-	ypos = 150
+	var fourthRow = scoreSheetColors[3]
+	xpos = 200
+	ypos = 180
 	for i in range(12, 1, -1):
 		var s = scoreButton.instance()
 		s.rect_position.x = xpos
@@ -80,7 +80,7 @@ func _ready():
 		var color = fourthRow.pop_front()
 		s.name = color + str(i)
 		s.setup(color, i)
-		xpos += 50
+		xpos += 60
 	
 	
 func rollAll():
@@ -119,6 +119,11 @@ func rollAll():
 	print("Green: ", possibleGreen2)
 	print("Blue: ", possibleBlue1)
 	print("Blue: ", possibleBlue2)
+	
+	if(Players.currentRollingPlayer < 5):
+		Players.currentRollingPlayer += 1
+	else:
+		Players.currentRollingPlayer = 1
 
 
 func roll(dieNum, diceTexture, color):
