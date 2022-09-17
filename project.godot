@@ -14,6 +14,10 @@ config/name="qwixxLike"
 run/main_scene="res://MainMenu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Players="*res://Players.gd"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
