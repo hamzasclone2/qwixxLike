@@ -7,7 +7,11 @@ onready var yellowDie = get_node("Dice/yellowDie")
 onready var greenDie = get_node("Dice/greenDie")
 onready var blueDie = get_node("Dice/blueDie")
 
-onready var rollButton = get_node("rollButton")
+onready var rollButton = get_node("RollButton")
+onready var nextButton = get_node("NextButton")
+
+onready var rollingPlayerLabel = get_node("RollingPlayerLabel")
+onready var scoringPlayerLabel = get_node("ScoringPlayerLabel")
 
 var rng = RandomNumberGenerator.new()
 
@@ -30,6 +34,7 @@ var scoreSheetColors = [
 ]
 
 func _ready():
+	var xIndex = 0
 	var firstRow = scoreSheetColors[0]
 	var xpos = 200
 	var ypos = 0
@@ -40,9 +45,11 @@ func _ready():
 		scoreSheet.add_child(s)
 		var color = firstRow.pop_front()
 		s.name = color + str(i)
-		s.setup(color, i)
+		s.setup(color, i, 0, xIndex)
+		xIndex += 1
 		xpos += 60
 		
+	xIndex = 0
 	var secondRow = scoreSheetColors[1]
 	xpos = 200
 	ypos = 60
@@ -53,9 +60,11 @@ func _ready():
 		scoreSheet.add_child(s)
 		var color = secondRow.pop_front()
 		s.name = color + str(i)
-		s.setup(color, i)
+		s.setup(color, i, 1, xIndex)
+		xIndex += 1
 		xpos += 60
 		
+	xIndex = 0
 	var thirdRow = scoreSheetColors[2]
 	xpos = 200
 	ypos = 120
@@ -66,9 +75,11 @@ func _ready():
 		scoreSheet.add_child(s)
 		var color = thirdRow.pop_front()
 		s.name = color + str(i)
-		s.setup(color, i)
+		s.setup(color, i, 2, xIndex)
+		xIndex += 1
 		xpos += 60
 		
+	xIndex = 0
 	var fourthRow = scoreSheetColors[3]
 	xpos = 200
 	ypos = 180
@@ -79,9 +90,15 @@ func _ready():
 		scoreSheet.add_child(s)
 		var color = fourthRow.pop_front()
 		s.name = color + str(i)
-		s.setup(color, i)
+		s.setup(color, i, 3, xIndex)
+		xIndex += 1
 		xpos += 60
+		
+	Players.currentRollingPlayerIndex = 0
+	Players.currentScoringPlayerIndex = 0
+	Players.playerHasRolled = false
 	
+	checkButtons()
 	
 func rollAll():
 	rng.randomize()
@@ -120,11 +137,6 @@ func rollAll():
 	print("Blue: ", possibleBlue1)
 	print("Blue: ", possibleBlue2)
 	
-	if(Players.currentRollingPlayer < 5):
-		Players.currentRollingPlayer += 1
-	else:
-		Players.currentRollingPlayer = 1
-
 
 func roll(dieNum, diceTexture, color):
 	var s
@@ -143,4 +155,36 @@ func roll(dieNum, diceTexture, color):
 	diceTexture.texture = load(s)
 
 func _on_rollButton_button_up():
+	Players.playerHasRolled = true
+	Players.currentScoringPlayerIndex = Players.currentRollingPlayerIndex
+
+	checkButtons()
 	rollAll()
+
+func _on_NextButton_pressed():
+	Players.currentScoringPlayerIndex += 1
+	if(Players.currentScoringPlayerIndex == Players.players.size()):
+		Players.currentScoringPlayerIndex = 0
+	
+	if(Players.currentScoringPlayerIndex == Players.currentRollingPlayerIndex):
+		Players.playerHasRolled = false
+		Players.currentRollingPlayerIndex += 1
+		
+	if(Players.currentRollingPlayerIndex == Players.players.size()):
+		Players.currentRollingPlayerIndex = 0
+
+	
+	checkButtons()
+
+func checkButtons():
+	if(Players.playerHasRolled):
+		rollButton.disabled = true
+		nextButton.disabled = false
+		scoringPlayerLabel.visible = true
+	else:
+		rollButton.disabled = false
+		nextButton.disabled = true
+		scoringPlayerLabel.visible = false
+		
+	rollingPlayerLabel.text = "Player " + str(Players.players[Players.currentRollingPlayerIndex]) + "'s Roll"
+	scoringPlayerLabel.text = "Player " + str(Players.players[Players.currentScoringPlayerIndex]) + " is scoring..."

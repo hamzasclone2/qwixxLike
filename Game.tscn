@@ -14,6 +14,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ScoreSheet" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -190.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Dice" type="Control" parent="."]
 anchor_top = 0.678
 anchor_right = 1.0
@@ -54,22 +62,46 @@ scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )
 offset = Vector2( 300, 25 )
 
-[node name="rollButton" type="Button" parent="."]
+[node name="RollButton" type="Button" parent="."]
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.83
 anchor_bottom = 1.0
 margin_top = -50.0
+margin_right = 0.0799561
 text = "Roll!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScoreSheet" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_bottom = -190.0
+[node name="NextButton" type="Button" parent="."]
+margin_left = 850.0
+margin_top = 550.0
+margin_right = 1024.0
+margin_bottom = 600.0
+text = "Next >>>"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="button_up" from="rollButton" to="." method="_on_rollButton_button_up"]
+[node name="RollingPlayerLabel" type="Label" parent="."]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 94.0
+margin_bottom = 19.0
+text = "Player 1's Roll"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoringPlayerLabel" type="Label" parent="."]
+margin_left = 5.0
+margin_top = 30.0
+margin_right = 133.0
+margin_bottom = 44.0
+text = "Player 1 is scoring..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_up" from="RollButton" to="." method="_on_rollButton_button_up"]
+[connection signal="pressed" from="NextButton" to="." method="_on_NextButton_pressed"]
