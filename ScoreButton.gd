@@ -43,7 +43,7 @@ func _on_Button_pressed():
 	Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][yIndex][xIndex] = 1
 		
 func _process(_delta):
-	if(Players.playerHasRolled == false):
-		button.disabled = true
-	else:
+	if(Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][yIndex][xIndex] == 0):
 		button.disabled = false
+	else:
+		button.disabled = true

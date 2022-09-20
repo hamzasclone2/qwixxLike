@@ -26,6 +26,16 @@ var scoreButton = preload("res://ScoreButton.tscn")
 
 onready var scoreSheet = get_node("ScoreSheet")
 
+var possibleWhite
+var possibleRed1
+var possibleRed2
+var possibleYellow1
+var possibleYellow2
+var possibleGreen1
+var possibleGreen2
+var possibleBlue1
+var possibleBlue2
+
 var scoreSheetColors = [
 	['R','R','R','R','R','R','R','R','R','R','R'],
 	['Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y'],
@@ -117,25 +127,27 @@ func rollAll():
 	roll(greenDieNum, greenDie, "green")
 	roll(blueDieNum, blueDie, "blue")
 	
-	var possibleWhite = whiteDie1Num + whiteDie2Num
-	var possibleRed1 = redDieNum + whiteDie1Num
-	var possibleRed2 = redDieNum + whiteDie2Num
-	var possibleYellow1 = yellowDieNum + whiteDie1Num
-	var possibleYellow2 = yellowDieNum + whiteDie2Num
-	var possibleGreen1 = greenDieNum + whiteDie1Num
-	var possibleGreen2 = greenDieNum + whiteDie2Num
-	var possibleBlue1 = blueDieNum + whiteDie1Num
-	var possibleBlue2 = blueDieNum + whiteDie2Num
+	possibleWhite = whiteDie1Num + whiteDie2Num
+	possibleRed1 = redDieNum + whiteDie1Num
+	possibleRed2 = redDieNum + whiteDie2Num
+	possibleYellow1 = yellowDieNum + whiteDie1Num
+	possibleYellow2 = yellowDieNum + whiteDie2Num
+	possibleGreen1 = greenDieNum + whiteDie1Num
+	possibleGreen2 = greenDieNum + whiteDie2Num
+	possibleBlue1 = blueDieNum + whiteDie1Num
+	possibleBlue2 = blueDieNum + whiteDie2Num
+
+
 	
-	print("White: ", possibleWhite)
-	print("Red: ", possibleRed1)
-	print("Red: ", possibleRed2)
-	print("Yellow: ", possibleYellow1)
-	print("Yellow: ", possibleYellow2)
-	print("Green: ", possibleGreen1)
-	print("Green: ", possibleGreen2)
-	print("Blue: ", possibleBlue1)
-	print("Blue: ", possibleBlue2)
+	#print("White: ", possibleWhite)
+	#print("Red: ", possibleRed1)
+	#print("Red: ", possibleRed2)
+	#print("Yellow: ", possibleYellow1)
+	#print("Yellow: ", possibleYellow2)
+	#print("Green: ", possibleGreen1)
+	#print("Green: ", possibleGreen2)
+	#print("Blue: ", possibleBlue1)
+	#print("Blue: ", possibleBlue2)
 	
 
 func roll(dieNum, diceTexture, color):
@@ -160,8 +172,10 @@ func _on_rollButton_button_up():
 
 	checkButtons()
 	rollAll()
+	checkScoreSheet()
 
 func _on_NextButton_pressed():
+	clearScoreSheet()
 	Players.currentScoringPlayerIndex += 1
 	if(Players.currentScoringPlayerIndex == Players.players.size()):
 		Players.currentScoringPlayerIndex = 0
@@ -173,8 +187,10 @@ func _on_NextButton_pressed():
 	if(Players.currentRollingPlayerIndex == Players.players.size()):
 		Players.currentRollingPlayerIndex = 0
 
-	
+	if(Players.playerHasRolled):
+		checkScoreSheet()
 	checkButtons()
+
 
 func checkButtons():
 	if(Players.playerHasRolled):
@@ -188,3 +204,62 @@ func checkButtons():
 		
 	rollingPlayerLabel.text = "Player " + str(Players.players[Players.currentRollingPlayerIndex]) + "'s Roll"
 	scoringPlayerLabel.text = "Player " + str(Players.players[Players.currentScoringPlayerIndex]) + " is scoring..."
+	
+func checkScoreSheet():
+	checkColor(possibleWhite, "white")
+	checkColor(possibleRed1, "red")
+	checkColor(possibleRed2, "red")
+	checkColor(possibleYellow1, "yellow")
+	checkColor(possibleYellow2, "yellow")
+	checkColor(possibleGreen1, "green")
+	checkColor(possibleGreen2, "green")
+	checkColor(possibleBlue1, "blue")
+	checkColor(possibleBlue2, "blue")
+
+		
+func clearScoreSheet():
+	for i in range(4):
+		for j in range(11):
+			if(Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][i][j] == 0):
+				Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][i][j] = -1
+
+func checkColor(roll, color):
+	if(color == 'white' or color == 'red'):
+		if(Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][0][roll-2] == -1):
+			Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][0][roll-2] = 0
+	if(color == 'white' or color == 'yellow'):
+		if(Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][1][roll-2] == -1):
+			Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][1][roll-2] = 0
+	
+	var reverseIndex = convertRollToIndex(roll)
+	if(color == 'white' or color == 'green'):
+		if(Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][2][reverseIndex] == -1):
+			Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][2][reverseIndex] = 0
+		
+	if(color == 'white' or color == 'blue'):
+		if(Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][3][reverseIndex] == -1):
+			Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][3][reverseIndex] = 0
+
+func convertRollToIndex(roll):
+	if(roll == 12):
+		return 0
+	elif(roll == 11):
+		return 1
+	elif(roll == 10):
+		return 2
+	elif(roll == 9):
+		return 3
+	elif(roll == 8):
+		return 4
+	elif(roll == 7):
+		return 5
+	elif(roll == 6):
+		return 6
+	elif(roll == 5):
+		return 7
+	elif(roll == 4):
+		return 8
+	elif(roll == 3):
+		return 9
+	elif(roll == 2):
+		return 10
