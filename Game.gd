@@ -9,9 +9,11 @@ onready var blueDie = get_node("Dice/blueDie")
 
 onready var rollButton = get_node("RollButton")
 onready var nextButton = get_node("NextButton")
+onready var penaltyButton = get_node("PenaltyButton")
 
 onready var rollingPlayerLabel = get_node("RollingPlayerLabel")
 onready var scoringPlayerLabel = get_node("ScoringPlayerLabel")
+onready var penaltyLabel = get_node("PenaltiesLabel")
 
 var rng = RandomNumberGenerator.new()
 
@@ -136,18 +138,6 @@ func rollAll():
 	possibleGreen2 = greenDieNum + whiteDie2Num
 	possibleBlue1 = blueDieNum + whiteDie1Num
 	possibleBlue2 = blueDieNum + whiteDie2Num
-
-
-	
-	#print("White: ", possibleWhite)
-	#print("Red: ", possibleRed1)
-	#print("Red: ", possibleRed2)
-	#print("Yellow: ", possibleYellow1)
-	#print("Yellow: ", possibleYellow2)
-	#print("Green: ", possibleGreen1)
-	#print("Green: ", possibleGreen2)
-	#print("Blue: ", possibleBlue1)
-	#print("Blue: ", possibleBlue2)
 	
 
 func roll(dieNum, diceTexture, color):
@@ -191,19 +181,23 @@ func _on_NextButton_pressed():
 		checkScoreSheet()
 	checkButtons()
 
-
 func checkButtons():
 	if(Players.playerHasRolled):
 		rollButton.disabled = true
 		nextButton.disabled = false
+		penaltyButton.disabled = false
 		scoringPlayerLabel.visible = true
+		penaltyLabel.visible = true
 	else:
 		rollButton.disabled = false
 		nextButton.disabled = true
+		penaltyButton.disabled = true
 		scoringPlayerLabel.visible = false
+		penaltyLabel.visible = false
 		
 	rollingPlayerLabel.text = "Player " + str(Players.players[Players.currentRollingPlayerIndex]) + "'s Roll"
 	scoringPlayerLabel.text = "Player " + str(Players.players[Players.currentScoringPlayerIndex]) + " is scoring..."
+	penaltyLabel.text = "Penalties: " + str(Players.penalties[Players.players[Players.currentScoringPlayerIndex] - 1])
 	
 func checkScoreSheet():
 	checkColor(possibleWhite, "white")
@@ -263,3 +257,12 @@ func convertRollToIndex(roll):
 		return 9
 	elif(roll == 2):
 		return 10
+
+func _on_PenaltyButton_pressed():
+	Players.penalties[Players.players[Players.currentScoringPlayerIndex] - 1] += 1
+	penaltyLabel.text = "Penalties: " + str(Players.penalties[Players.players[Players.currentScoringPlayerIndex] - 1])
+	if(Players.penalties[Players.players[Players.currentScoringPlayerIndex] - 1] == 4):
+		gameOver()
+		
+func gameOver():
+	print("Game over!")

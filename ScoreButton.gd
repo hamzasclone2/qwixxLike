@@ -41,6 +41,10 @@ func _on_Button_pressed():
 		
 	
 	Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][yIndex][xIndex] = 1
+	
+	for i in range(xIndex):
+		if(Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][yIndex][i] == -1 or Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][yIndex][i] == 0):
+			Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][yIndex][i] = -2
 		
 func _process(_delta):
 	if(Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][yIndex][xIndex] == 0):

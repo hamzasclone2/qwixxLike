@@ -5,6 +5,8 @@ var playerTypes = ["Human", "AI", "None", "None", "None"]
 var playerScoreSheets = []
 var players = [1, 2]
 
+var penalties = [0, 0, 0, 0, 0]
+
 var currentRollingPlayerIndex
 var currentScoringPlayerIndex
 
@@ -21,7 +23,7 @@ func setup():
 		[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
 		[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
 		[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
-	]) # Player 1
+	])
 	playerScoreSheets.append([ # Player 2
 		[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
 		[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],

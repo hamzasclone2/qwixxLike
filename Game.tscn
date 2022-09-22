@@ -103,5 +103,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="PenaltiesLabel" type="Label" parent="."]
+margin_left = 5.0
+margin_top = 55.0
+margin_right = 80.0
+margin_bottom = 69.0
+text = "Penalties: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PenaltyButton" type="Button" parent="."]
+margin_left = 5.0
+margin_top = 80.0
+margin_right = 155.0
+margin_bottom = 130.0
+text = "Take a Penalty"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="button_up" from="RollButton" to="." method="_on_rollButton_button_up"]
 [connection signal="pressed" from="NextButton" to="." method="_on_NextButton_pressed"]
+[connection signal="pressed" from="PenaltyButton" to="." method="_on_PenaltyButton_pressed"]
