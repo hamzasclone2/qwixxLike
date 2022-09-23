@@ -14,6 +14,7 @@ onready var penaltyButton = get_node("PenaltyButton")
 onready var rollingPlayerLabel = get_node("RollingPlayerLabel")
 onready var scoringPlayerLabel = get_node("ScoringPlayerLabel")
 onready var penaltyLabel = get_node("PenaltiesLabel")
+onready var finalScoreLabel = get_node("FinalScoreLabel")
 
 var rng = RandomNumberGenerator.new()
 
@@ -211,12 +212,6 @@ func checkScoreSheet():
 		checkColor(possibleBlue1, "blue")
 		checkColor(possibleBlue2, "blue")
 		
-		checkColor(12, "red")
-		checkColor(12, "yellow")
-		checkColor(2, "green")
-		checkColor(2, "blue")
-
-		
 func clearScoreSheet():
 	for i in range(4):
 		for j in range(11):
@@ -294,4 +289,55 @@ func _on_PenaltyButton_pressed():
 		gameOver()
 		
 func gameOver():
-	print("Game over!")
+	var s = "Final Score: \n"
+	var score = 0
+	var count = 0
+	
+	for i in Players.players:
+		for j in range(4):
+			count = Players.playerScoreSheets[i - 1][j].count(1)
+			score += convertCountToScore(count)
+		
+		score -= 5 * Players.penalties[i-1]
+		s += "Player " + str(i) + " Final Score: " + str(score) + "\n"
+		score = 0
+	
+	finalScoreLabel.text = s
+	finalScoreLabel.visible = true
+		
+
+	
+func convertCountToScore(count):
+	var score
+	if(count == 1):
+		score = 1
+	elif(count == 2):
+		score = 3
+	elif(count == 3):
+		score = 6
+	elif(count == 4):
+		score = 10
+	elif(count == 5):
+		score = 15
+	elif(count == 6):
+		score = 21
+	elif(count == 7):
+		score = 28
+	elif(count == 8):
+		score = 36
+	elif(count == 9):
+		score = 45
+	elif(count == 10):
+		score = 55
+	elif(count == 11):
+		score = 66
+	elif(count == 12):
+		score = 78
+	else:
+		score = 0
+	return score
+	
+
+
+func _on_Button_pressed():
+	gameOver()
