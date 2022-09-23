@@ -201,14 +201,20 @@ func checkButtons():
 	
 func checkScoreSheet():
 	checkColor(possibleWhite, "white")
-	checkColor(possibleRed1, "red")
-	checkColor(possibleRed2, "red")
-	checkColor(possibleYellow1, "yellow")
-	checkColor(possibleYellow2, "yellow")
-	checkColor(possibleGreen1, "green")
-	checkColor(possibleGreen2, "green")
-	checkColor(possibleBlue1, "blue")
-	checkColor(possibleBlue2, "blue")
+	if(Players.currentRollingPlayerIndex == Players.currentScoringPlayerIndex):
+		checkColor(possibleRed1, "red")
+		checkColor(possibleRed2, "red")
+		checkColor(possibleYellow1, "yellow")
+		checkColor(possibleYellow2, "yellow")
+		checkColor(possibleGreen1, "green")
+		checkColor(possibleGreen2, "green")
+		checkColor(possibleBlue1, "blue")
+		checkColor(possibleBlue2, "blue")
+		
+		checkColor(12, "red")
+		checkColor(12, "yellow")
+		checkColor(2, "green")
+		checkColor(2, "blue")
 
 		
 func clearScoreSheet():
@@ -218,20 +224,43 @@ func clearScoreSheet():
 				Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][i][j] = -1
 
 func checkColor(roll, color):
+	if(roll == 12 and (color == "white" or color == "red")):
+		if(Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][0].count(1) >= 5):
+			if(Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][0][roll-2] == -1):
+				Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][0][roll-2] = 0
+
+				
+	if(roll == 12 and (color == "white" or color == "yellow")):
+		if(Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][1].count(1) >= 5):
+			if(Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][1][roll-2] == -1):
+				Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][1][roll-2] = 0
+
+	if(roll == 2 and (color == "white" or color == "green")):
+		if(Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][2].count(1) >= 5):
+			if(Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][2][roll-2] == -1):
+				Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][2][roll-2] = 0
+
+	if(roll == 2 and (color == "white" or color == "red")):
+		if(Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][3].count(1) >= 5):
+			if(Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][3][roll-2] == -1):
+				Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][3][roll-2] = 0
+
+	
+	
 	if(color == 'white' or color == 'red'):
-		if(Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][0][roll-2] == -1):
+		if(roll != 12 and Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][0][roll-2] == -1):
 			Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][0][roll-2] = 0
 	if(color == 'white' or color == 'yellow'):
-		if(Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][1][roll-2] == -1):
+		if(roll != 12 and Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][1][roll-2] == -1):
 			Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][1][roll-2] = 0
 	
 	var reverseIndex = convertRollToIndex(roll)
 	if(color == 'white' or color == 'green'):
-		if(Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][2][reverseIndex] == -1):
+		if(roll != 2 and Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][2][reverseIndex] == -1):
 			Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][2][reverseIndex] = 0
 		
 	if(color == 'white' or color == 'blue'):
-		if(Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][3][reverseIndex] == -1):
+		if(roll != 2 and Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][3][reverseIndex] == -1):
 			Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][3][reverseIndex] = 0
 
 func convertRollToIndex(roll):
