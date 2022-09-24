@@ -110,6 +110,7 @@ func _ready():
 	Players.currentRollingPlayerIndex = 0
 	Players.currentScoringPlayerIndex = 0
 	Players.playerHasRolled = false
+	Players.scoringPlayerHasSelected = false
 	
 	checkButtons()
 	
@@ -166,6 +167,7 @@ func _on_rollButton_button_up():
 	checkScoreSheet()
 
 func _on_NextButton_pressed():
+	Players.scoringPlayerHasSelected = false
 	clearScoreSheet()
 	Players.currentScoringPlayerIndex += 1
 	if(Players.currentScoringPlayerIndex == Players.players.size()):
