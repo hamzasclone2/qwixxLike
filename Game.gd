@@ -111,6 +111,8 @@ func _ready():
 	Players.currentScoringPlayerIndex = 0
 	Players.playerHasRolled = false
 	Players.scoringPlayerHasSelected = false
+	Players.rollingPlayerHasScored = false
+	penaltyButton.disabled = true
 	
 	checkButtons()
 	
@@ -168,6 +170,7 @@ func _on_rollButton_button_up():
 
 func _on_NextButton_pressed():
 	Players.scoringPlayerHasSelected = false
+	Players.rollingPlayerHasScored = false
 	clearScoreSheet()
 	Players.currentScoringPlayerIndex += 1
 	if(Players.currentScoringPlayerIndex == Players.players.size()):
@@ -185,16 +188,19 @@ func _on_NextButton_pressed():
 	checkButtons()
 
 func checkButtons():
+	if(Players.currentScoringPlayerIndex == Players.currentRollingPlayerIndex and Players.playerHasRolled):
+		penaltyButton.disabled = false
+	else:
+		penaltyButton.disabled = true
+		
 	if(Players.playerHasRolled):
 		rollButton.disabled = true
 		nextButton.disabled = false
-		penaltyButton.disabled = false
 		scoringPlayerLabel.visible = true
 		penaltyLabel.visible = true
 	else:
 		rollButton.disabled = false
 		nextButton.disabled = true
-		penaltyButton.disabled = true
 		scoringPlayerLabel.visible = false
 		penaltyLabel.visible = false
 		
@@ -285,6 +291,8 @@ func convertRollToIndex(roll):
 		return 10
 
 func _on_PenaltyButton_pressed():
+	penaltyButton.disabled = true
+	Players.rollingPlayerHasScored = true
 	Players.penalties[Players.players[Players.currentScoringPlayerIndex] - 1] += 1
 	penaltyLabel.text = "Penalties: " + str(Players.penalties[Players.players[Players.currentScoringPlayerIndex] - 1])
 	if(Players.penalties[Players.players[Players.currentScoringPlayerIndex] - 1] == 4):
@@ -343,3 +351,11 @@ func convertCountToScore(count):
 
 func _on_Button_pressed():
 	gameOver()
+	
+func _process(delta):
+	if(Players.currentRollingPlayerIndex == Players.currentScoringPlayerIndex):
+		if(Players.rollingPlayerHasScored == false):
+			nextButton.disabled = true
+		else:
+			nextButton.disabled = false
+			penaltyButton.disabled = true

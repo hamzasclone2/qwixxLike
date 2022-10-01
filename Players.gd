@@ -13,6 +13,7 @@ var currentScoringPlayerIndex
 var playerHasRolled
 var rollingPlayerHasSelected
 var scoringPlayerHasSelected
+var rollingPlayerHasScored
 	
 func setup():
 	# -2 : Not available to select at all

@@ -31,6 +31,9 @@ func _on_Button_pressed():
 	if(Players.currentRollingPlayerIndex != Players.currentScoringPlayerIndex):
 		Players.scoringPlayerHasSelected = true
 		
+	if(Players.currentRollingPlayerIndex == Players.currentScoringPlayerIndex):
+		Players.rollingPlayerHasScored = true
+		
 	if(Players.players[Players.currentScoringPlayerIndex] == 1):
 		get_node("Label").visible = true
 	elif(Players.players[Players.currentScoringPlayerIndex] == 2):
@@ -48,9 +51,17 @@ func _on_Button_pressed():
 	for i in range(xIndex):
 		if(Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][yIndex][i] == -1 or Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][yIndex][i] == 0):
 			Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][yIndex][i] = -2
+			
+
 		
 func _process(_delta):
-	if(Players.scoringPlayerHasSelected == false and Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][yIndex][xIndex] == 0):
-		button.disabled = false
+	if(Players.currentScoringPlayerIndex != Players.currentRollingPlayerIndex):
+		if(Players.scoringPlayerHasSelected == false and Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][yIndex][xIndex] == 0):
+			button.disabled = false
+		else:
+			button.disabled = true
 	else:
-		button.disabled = true
+		if(Players.rollingPlayerHasScored == false and Players.playerScoreSheets[Players.players[Players.currentScoringPlayerIndex] - 1][yIndex][xIndex] == 0):
+			button.disabled = false
+		else:
+			button.disabled = true
