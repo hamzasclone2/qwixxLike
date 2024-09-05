@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
-[ext_resource path="res://sprites/whiteOne.png" type="Texture" id=2]
+[ext_resource path="res://sprites/whiteOne.png" type="Texture2D" id=2]
 
 [node name="Game" type="Node"]
 script = ExtResource( 1 )
@@ -17,7 +17,7 @@ __meta__ = {
 [node name="ScoreSheet" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -190.0
+offset_bottom = -190.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -26,38 +26,38 @@ __meta__ = {
 anchor_top = 0.678
 anchor_right = 1.0
 anchor_bottom = 0.912
-margin_top = 0.199982
-margin_bottom = -0.200012
+offset_top = 0.199982
+offset_bottom = -0.200012
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="whiteDie1" type="Sprite" parent="Dice"]
+[node name="whiteDie1" type="Sprite2D" parent="Dice"]
 scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )
 offset = Vector2( 50, 25 )
 
-[node name="whiteDie2" type="Sprite" parent="Dice"]
+[node name="whiteDie2" type="Sprite2D" parent="Dice"]
 scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )
 offset = Vector2( 100, 25 )
 
-[node name="redDie" type="Sprite" parent="Dice"]
+[node name="redDie" type="Sprite2D" parent="Dice"]
 scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )
 offset = Vector2( 150, 25 )
 
-[node name="yellowDie" type="Sprite" parent="Dice"]
+[node name="yellowDie" type="Sprite2D" parent="Dice"]
 scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )
 offset = Vector2( 200, 25 )
 
-[node name="greenDie" type="Sprite" parent="Dice"]
+[node name="greenDie" type="Sprite2D" parent="Dice"]
 scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )
 offset = Vector2( 250, 25 )
 
-[node name="blueDie" type="Sprite" parent="Dice"]
+[node name="blueDie" type="Sprite2D" parent="Dice"]
 scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )
 offset = Vector2( 300, 25 )
@@ -66,58 +66,58 @@ offset = Vector2( 300, 25 )
 anchor_top = 1.0
 anchor_right = 0.83
 anchor_bottom = 1.0
-margin_top = -50.0
-margin_right = 0.0799561
+offset_top = -50.0
+offset_right = 0.0799561
 text = "Roll!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="NextButton" type="Button" parent="."]
-margin_left = 850.0
-margin_top = 550.0
-margin_right = 1024.0
-margin_bottom = 600.0
+offset_left = 850.0
+offset_top = 550.0
+offset_right = 1024.0
+offset_bottom = 600.0
 text = "Next >>>"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RollingPlayerLabel" type="Label" parent="."]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 94.0
-margin_bottom = 19.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 94.0
+offset_bottom = 19.0
 text = "Player 1's Roll"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ScoringPlayerLabel" type="Label" parent="."]
-margin_left = 5.0
-margin_top = 30.0
-margin_right = 133.0
-margin_bottom = 44.0
+offset_left = 5.0
+offset_top = 30.0
+offset_right = 133.0
+offset_bottom = 44.0
 text = "Player 1 is scoring..."
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PenaltiesLabel" type="Label" parent="."]
-margin_left = 5.0
-margin_top = 55.0
-margin_right = 80.0
-margin_bottom = 69.0
+offset_left = 5.0
+offset_top = 55.0
+offset_right = 80.0
+offset_bottom = 69.0
 text = "Penalties: 0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PenaltyButton" type="Button" parent="."]
-margin_left = 5.0
-margin_top = 80.0
-margin_right = 155.0
-margin_bottom = 130.0
+offset_left = 5.0
+offset_top = 80.0
+offset_right = 155.0
+offset_bottom = 130.0
 text = "Take a Penalty"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -129,10 +129,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -36.5
-margin_top = -30.0
-margin_right = 36.5
-margin_bottom = -16.0
+offset_left = -36.5
+offset_top = -30.0
+offset_right = 36.5
+offset_bottom = -16.0
 text = "Final Score:"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -141,8 +141,8 @@ __meta__ = {
 [node name="Button" type="Button" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -116.0
-margin_bottom = 20.0
+offset_left = -116.0
+offset_bottom = 20.0
 text = "Game Over Test"
 __meta__ = {
 "_edit_use_anchors_": false

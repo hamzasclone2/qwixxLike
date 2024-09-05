@@ -1,20 +1,20 @@
 extends Node
 
-onready var whiteDie1 = get_node("Dice/whiteDie1")
-onready var whiteDie2 = get_node("Dice/whiteDie2")
-onready var redDie = get_node("Dice/redDie")
-onready var yellowDie = get_node("Dice/yellowDie")
-onready var greenDie = get_node("Dice/greenDie")
-onready var blueDie = get_node("Dice/blueDie")
+@onready var whiteDie1 = get_node("Dice/whiteDie1")
+@onready var whiteDie2 = get_node("Dice/whiteDie2")
+@onready var redDie = get_node("Dice/redDie")
+@onready var yellowDie = get_node("Dice/yellowDie")
+@onready var greenDie = get_node("Dice/greenDie")
+@onready var blueDie = get_node("Dice/blueDie")
 
-onready var rollButton = get_node("RollButton")
-onready var nextButton = get_node("NextButton")
-onready var penaltyButton = get_node("PenaltyButton")
+@onready var rollButton = get_node("RollButton")
+@onready var nextButton = get_node("NextButton")
+@onready var penaltyButton = get_node("PenaltyButton")
 
-onready var rollingPlayerLabel = get_node("RollingPlayerLabel")
-onready var scoringPlayerLabel = get_node("ScoringPlayerLabel")
-onready var penaltyLabel = get_node("PenaltiesLabel")
-onready var finalScoreLabel = get_node("FinalScoreLabel")
+@onready var rollingPlayerLabel = get_node("RollingPlayerLabel")
+@onready var scoringPlayerLabel = get_node("ScoringPlayerLabel")
+@onready var penaltyLabel = get_node("PenaltiesLabel")
+@onready var finalScoreLabel = get_node("FinalScoreLabel")
 
 var rng = RandomNumberGenerator.new()
 
@@ -27,7 +27,7 @@ var blueDieNum
 
 var scoreButton = preload("res://ScoreButton.tscn")
 
-onready var scoreSheet = get_node("ScoreSheet")
+@onready var scoreSheet = get_node("ScoreSheet")
 
 var possibleWhite
 var possibleRed1
@@ -52,9 +52,9 @@ func _ready():
 	var xpos = 200
 	var ypos = 0
 	for i in range(2, 13):
-		var s = scoreButton.instance()
-		s.rect_position.x = xpos
-		s.rect_position.y = ypos
+		var s = scoreButton.instantiate()
+		s.position.x = xpos
+		s.position.y = ypos
 		scoreSheet.add_child(s)
 		var color = firstRow.pop_front()
 		s.name = color + str(i)
@@ -67,9 +67,9 @@ func _ready():
 	xpos = 200
 	ypos = 60
 	for i in range(2, 13):
-		var s = scoreButton.instance()
-		s.rect_position.x = xpos
-		s.rect_position.y = ypos
+		var s = scoreButton.instantiate()
+		s.position.x = xpos
+		s.position.y = ypos
 		scoreSheet.add_child(s)
 		var color = secondRow.pop_front()
 		s.name = color + str(i)
@@ -82,9 +82,9 @@ func _ready():
 	xpos = 200
 	ypos = 120
 	for i in range(12, 1, -1):
-		var s = scoreButton.instance()
-		s.rect_position.x = xpos
-		s.rect_position.y = ypos
+		var s = scoreButton.instantiate()
+		s.position.x = xpos
+		s.position.y = ypos
 		scoreSheet.add_child(s)
 		var color = thirdRow.pop_front()
 		s.name = color + str(i)
@@ -97,9 +97,9 @@ func _ready():
 	xpos = 200
 	ypos = 180
 	for i in range(12, 1, -1):
-		var s = scoreButton.instance()
-		s.rect_position.x = xpos
-		s.rect_position.y = ypos
+		var s = scoreButton.instantiate()
+		s.position.x = xpos
+		s.position.y = ypos
 		scoreSheet.add_child(s)
 		var color = fourthRow.pop_front()
 		s.name = color + str(i)

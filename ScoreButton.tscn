@@ -3,8 +3,8 @@
 [ext_resource path="res://ScoreButton.gd" type="Script" id=1]
 
 [node name="Control" type="Control"]
-margin_right = 60.0
-margin_bottom = 60.0
+offset_right = 60.0
+offset_bottom = 60.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -18,10 +18,10 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="."]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 55.0
-margin_bottom = 55.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 55.0
+offset_bottom = 55.0
 disabled = true
 text = "?"
 __meta__ = {
@@ -30,10 +30,10 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="."]
 visible = false
-margin_left = 7.07107
-margin_top = 6.36397
-margin_right = 15.0711
-margin_bottom = 20.364
+offset_left = 7.07107
+offset_top = 6.36397
+offset_right = 15.0711
+offset_bottom = 20.364
 text = "1"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -41,10 +41,10 @@ __meta__ = {
 
 [node name="Label2" type="Label" parent="."]
 visible = false
-margin_left = 25.8094
-margin_top = 4.94977
-margin_right = 33.8094
-margin_bottom = 18.9498
+offset_left = 25.8094
+offset_top = 4.94977
+offset_right = 33.8094
+offset_bottom = 18.9498
 text = "2"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -52,10 +52,10 @@ __meta__ = {
 
 [node name="Label3" type="Label" parent="."]
 visible = false
-margin_left = 47.0226
-margin_top = 4.59618
-margin_right = 55.0226
-margin_bottom = 18.5962
+offset_left = 47.0226
+offset_top = 4.59618
+offset_right = 55.0226
+offset_bottom = 18.5962
 text = "3"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -63,10 +63,10 @@ __meta__ = {
 
 [node name="Label4" type="Label" parent="."]
 visible = false
-margin_left = 14.4957
-margin_top = 40.6586
-margin_right = 22.4957
-margin_bottom = 54.6586
+offset_left = 14.4957
+offset_top = 40.6586
+offset_right = 22.4957
+offset_bottom = 54.6586
 text = "4"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -74,10 +74,10 @@ __meta__ = {
 
 [node name="Label5" type="Label" parent="."]
 visible = false
-margin_left = 36.416
-margin_top = 41.0122
-margin_right = 44.416
-margin_bottom = 55.0122
+offset_left = 36.416
+offset_top = 41.0122
+offset_right = 44.416
+offset_bottom = 55.0122
 text = "5"
 __meta__ = {
 "_edit_use_anchors_": false

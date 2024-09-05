@@ -6,8 +6,8 @@ var value
 var yIndex
 var xIndex
 
-onready var color_rect = get_node("ColorRect")
-onready var button = get_node("Button")
+@onready var color_rect = get_node("ColorRect")
+@onready var button = get_node("Button")
 
 func setup(new_color, new_value, y, x):
 	if(new_color=="R"):
